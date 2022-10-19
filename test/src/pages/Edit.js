@@ -1,25 +1,33 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { handleChange } from '../services/Handler';
 
 const Edit = () => {
-  // const { id } = useParams('id');
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   axios.get('http://localhost:3010/data').then((response) => {
-  //     setData(response.data);
-  //   });
-  // });
-
-  // const getById = (id) => {
-  //   return data.find((data) => data.id === id);
-  // };
   const location = useLocation();
   const state = location.state;
+  const navigation = useNavigate();
+  const [name, setName] = useState('');
+
+  const update = async () =>
+    await axios.put(`http://localhost:3010/data/${state.id}`, { name: name });
 
   return (
     <div>
-      <p>{state.name}</p>
+      <input
+        type="text"
+        placeholder={state.name}
+        value={name}
+        onChange={(e) => handleChange(setName, e)}
+      />
+      <button
+        onClick={() => {
+          update();
+          navigation('/');
+        }}
+      >
+        <p>update</p>
+      </button>
     </div>
   );
 };

@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import { handleChange } from '../services/Handler';
 
 const Container = styled.div`
   font-size: 1.5rem;
 `;
 
-const Table = styled.tbody`
+const Table = styled.table`
   width: 75%;
   display: block;
   margin: 0 auto;
@@ -26,6 +27,10 @@ const TableCell = styled.td`
     text-align: center;
     border: 1px solid;
   `}
+`;
+
+const Icons = styled.Icon`
+  cursor: pointer;
 `;
 
 const Home = () => {
@@ -53,10 +58,6 @@ const Home = () => {
     return data.find((data) => data.id === id);
   };
 
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
-
   return (
     <Container>
       <Table>
@@ -79,11 +80,11 @@ const Home = () => {
               <TableCell width="20">{e.cel}</TableCell>
               <TableCell>
                 <Link to={`/edit/${e.id}`} state={getById(Number(e.id))}>
-                  <Icon icon="clarity:note-edit-line" />
+                  <Icons icon="clarity:note-edit-line" />
                 </Link>
               </TableCell>
               <TableCell>
-                <Icon
+                <Icons
                   icon="fluent:delete-28-regular"
                   onClick={() => deleteData(e.id)}
                 />
@@ -92,7 +93,11 @@ const Home = () => {
           );
         })}
       </Table>
-      <input type="text" onChange={handleName} value={name} />
+      <input
+        type="text"
+        onChange={(e) => handleChange(setName, e)}
+        value={name}
+      />
       <button
         onClick={() => {
           create();
