@@ -128,7 +128,7 @@ export const PFForm = ({ visible }) => {
       marital: marital,
       rg: rg,
       agency: agency,
-      ufrg: ufrg,
+      ufrg: ufrg.toUpperCase(),
       cnh: cnh,
       securityCode: securityCode,
       cei: cei,
@@ -137,7 +137,7 @@ export const PFForm = ({ visible }) => {
       cel: cel,
       cep: cep,
       city: city,
-      uf: uf,
+      uf: uf.toUpperCase(),
       address: address,
       number: number,
       complement: complement,
@@ -230,7 +230,7 @@ export const PFForm = ({ visible }) => {
           <TextInput
             type="text"
             width="5"
-            value={ufrg}
+            value={ufrg.toUpperCase()}
             onChange={(e) => handleChange(setUfrg, e)}
           />
         </Column>
@@ -326,7 +326,7 @@ export const PFForm = ({ visible }) => {
             type="text"
             width="5"
             maxLength={2}
-            value={uf}
+            value={uf.toUpperCase()}
             onChange={(e) => handleChange(setUf, e)}
           />
         </Column>
@@ -386,7 +386,7 @@ export const PFForm = ({ visible }) => {
           disabled={
             name.length < 1 ||
             cpf.length < 11 ||
-            rg.length < 7 ||
+            rg.length < 5 ||
             cep.length < 8 ||
             address.length < 1 ||
             number.length < 1 ||

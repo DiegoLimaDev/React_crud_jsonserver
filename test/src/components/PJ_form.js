@@ -37,7 +37,7 @@ const Container = styled.div`
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   width: 100%;
 `;
 
@@ -87,6 +87,10 @@ const Text = styled.p`
   `}
 `;
 
+const AlignItems = styled.div`
+  align-content: baseline;
+`;
+
 export const PJForm = ({ visible }) => {
   const navigation = useNavigate();
   const document = 'PJ';
@@ -132,7 +136,7 @@ export const PJForm = ({ visible }) => {
       responsibleEmail: responsibleEmail,
       cep: cep,
       city: city,
-      uf: uf,
+      uf: uf.toLocaleUpperCase(),
       address: address,
       number: number,
       complement: complement,
@@ -324,7 +328,7 @@ export const PJForm = ({ visible }) => {
             type="text"
             width="5"
             maxLength={2}
-            value={uf}
+            value={uf.toUpperCase()}
             onChange={(e) => handleChange(setUf, e)}
           />
         </Column>

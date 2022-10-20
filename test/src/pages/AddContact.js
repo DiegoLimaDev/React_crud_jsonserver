@@ -1,12 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { CancelButton, CreateButton } from '../components/Button';
 import { PFForm } from '../components/PF_form';
 import { PJForm } from '../components/PJ_form';
 import { Topbar } from '../components/Topbar';
-import { handleChange } from '../services/Handler';
 import { theme } from '../utils/theme';
 
 const Container = styled.div`
@@ -29,22 +25,8 @@ const HorizontalSeparator = styled.div`
   margin: 0 2rem;
 `;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Checkbox = styled.input`
   border-radius: 100%;
-`;
-
-const TextInput = styled.input`
-  ${({ width }) => css`
-    border-radius: 2rem;
-    border: 1px solid;
-    width: ${width}rem;
-    padding: 0.3rem;
-  `}
 `;
 
 const Text = styled.p`
@@ -57,19 +39,7 @@ const Text = styled.p`
 `;
 
 const AddContact = () => {
-  const navigation = useNavigate();
   const [document, setDocument] = useState('PJ');
-  const [active, setActive] = useState(false);
-  const [name, setName] = useState('');
-  const [fantasyName, setFantasyName] = useState('');
-
-  const create = async () =>
-    await axios.post('http://localhost:3010/data', {
-      document: document,
-      active: active,
-      name: name,
-      fantasyName: fantasyName,
-    });
 
   return (
     <Container>

@@ -177,7 +177,7 @@ const Edit = () => {
           : state.responsibleEmail,
       cep: cep >= 1 ? cep : state.cep,
       city: city >= 1 ? city : state.city,
-      uf: uf !== state.uf && uf.length === 2 ? uf : state.uf,
+      uf: uf !== state.uf && uf.length === 2 ? uf.toUpperCase() : state.uf,
       address: address.length >= 1 ? address : state.address,
       number: number.length >= 1 ? number : state.number,
       complement: complement.length >= 1 ? complement : state.complement,
@@ -195,7 +195,7 @@ const Edit = () => {
       marital: marital !== state.marital ? marital : state.marital,
       rg: rg.length >= 1 ? rg : state.rg,
       agency: agency.length >= 1 ? agency : state.agency,
-      ufrg: ufrg.length === 2 ? ufrg : state.ufrg,
+      ufrg: ufrg.length === 2 ? ufrg.toUpperCase() : state.ufrg,
       cnh: cnh.length >= 1 ? cnh : state.cnh,
       securityCode:
         securityCode.length >= 1 ? securityCode : state.securityCode,
@@ -205,7 +205,7 @@ const Edit = () => {
       cel: cel.length >= 1 ? cel : state.cel,
       cep: cep.length >= 1 ? cep : state.cep,
       city: city.length >= 1 ? city : state.city,
-      uf: uf.length === 2 ? uf : state.uf,
+      uf: uf.length === 2 ? uf.toUpperCase() : state.uf,
       address: address.length >= 1 ? address : state.address,
       number: number.length >= 1 ? number : state.number,
       complement: complement.length >= 1 ? complement : state.complement,
@@ -416,7 +416,7 @@ const Edit = () => {
                 width="5"
                 maxLength={2}
                 placeholder={state.uf}
-                value={uf}
+                value={uf.toUpperCase()}
                 onChange={(e) => handleChange(setUf, e)}
               />
             </Column>
@@ -581,7 +581,7 @@ const Edit = () => {
                 type="text"
                 width="5"
                 placeholder={state.ufrg}
-                value={ufrg}
+                value={ufrg.toUpperCase()}
                 onChange={(e) => handleChange(setUfrg, e)}
               />
             </Column>
@@ -685,7 +685,7 @@ const Edit = () => {
                 width="5"
                 placeholder={state.uf}
                 maxLength={2}
-                value={uf}
+                value={uf.toUpperCase()}
                 onChange={(e) => handleChange(setUf, e)}
               />
             </Column>

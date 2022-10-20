@@ -8,9 +8,7 @@ import { Topbar } from '../components/Topbar';
 import { MyAddButton } from '../components/Button';
 import { theme } from '../utils/theme';
 
-const Container = styled.div`
-  /* font-size: 1.5rem; */
-`;
+const Container = styled.div``;
 
 const Row = styled.div`
   display: flex;
@@ -26,13 +24,11 @@ const Table = styled.div`
   margin: 0 auto;
   border: 1px solid;
   border-color: ${theme.colors.primaryColor};
+  border-radius: 3px;
   padding: 0.1rem;
 `;
 
-const TableRow = styled.tr`
-  /* width: auto;
-  height: 2rem; */
-`;
+const TableRow = styled.tr``;
 
 const TableHead = styled.th`
   color: ${theme.colors.primaryColor};
@@ -49,6 +45,10 @@ const TableCell = styled.td`
     color: ${theme.colors.primaryColor};
     font-size: 1.2rem;
   `}
+`;
+
+const MarginLeft = styled.div`
+  margin-left: 4rem;
 `;
 
 const Icons = styled.div`
@@ -87,9 +87,11 @@ const Home = () => {
   return (
     <Container>
       <Topbar>Cadastro/Clientes</Topbar>
-      <MyAddButton onClick={() => navigation('/add')}>
-        <p>adicionar</p>
-      </MyAddButton>
+      <MarginLeft>
+        <MyAddButton onClick={() => navigation('/add')}>
+          <p>adicionar</p>
+        </MyAddButton>
+      </MarginLeft>
       <Row>
         <TextInput
           type="text"
@@ -99,43 +101,6 @@ const Home = () => {
         />
         <Icon icon="ant-design:search-outlined" width="25" height="25" />
       </Row>
-      {/* <Table>
-        <TableHead widTableHead="5">ID</TableHead>
-        <TableHead widTableHead="15">NAME</TableHead>
-        <TableHead widTableHead="20">CPF/CNPJ</TableHead>
-        <TableHead widTableHead="20">EMAIL</TableHead>
-        <TableHead widTableHead="20">TEL</TableHead>
-        <TableHead widTableHead="20">CEL</TableHead>
-        {data.map((e) => {
-          return (
-            <TableRow key={e.id}>
-              <TableCell width="5">{e.id}</TableCell>
-              <TableCell width="15">{e.name}</TableCell>
-              <TableCell width="20">
-                {e.document === 'PJ' ? e.cnpj : e.cpf}
-              </TableCell>
-              <TableCell width="20">{e.email}</TableCell>
-              <TableCell width="20">{e.tel}</TableCell>
-              <TableCell width="20">{e.cel}</TableCell>
-              <TableCell>
-                <Link to={`/edit/${e.id}`} state={getById(Number(e.id))}>
-                  <Icon icon="clarity:note-edit-line" width="25" height="25" />
-                </Link>
-              </TableCell>
-              <TableCell>
-                <Icons>
-                  <Icon
-                    icon="fluent:delete-28-regular"
-                    width="25"
-                    height="25"
-                    onClick={() => deleteData(e.id)}
-                  />
-                </Icons>
-              </TableCell>
-            </TableRow>
-          );
-        })}
-      </Table> */}
       <Table>
         <TableHead widTableHead="5">ID</TableHead>
         <TableHead widTableHead="15">NAME</TableHead>

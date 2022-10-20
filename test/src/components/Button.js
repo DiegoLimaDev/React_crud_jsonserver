@@ -53,7 +53,7 @@ export const MyAddButton = ({ onClick }) => {
 };
 
 MyAddButton.propTypes = {
-  onClick: P.node,
+  onClick: P.func,
 };
 
 export const CreateButton = ({ onClick, disabled }) => {
