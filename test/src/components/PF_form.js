@@ -54,10 +54,6 @@ const Column = styled.div`
   flex-direction: column;
 `;
 
-const Checkbox = styled.input`
-  border-radius: 100%;
-`;
-
 const TextInput = styled.input`
   ${({ width }) => css`
     border-radius: 2rem;
@@ -105,7 +101,21 @@ export const PFForm = ({ visible }) => {
   const [marital, setMarital] = useState('');
   const [rg, setRg] = useState('');
   const [agency, setAgency] = useState('');
+  const [ufrg, setUfrg] = useState('');
+  const [cnh, setCnh] = useState('');
+  const [securityCode, setSecurityCode] = useState('');
+  const [cei, setCei] = useState('');
+  const [email, setEmail] = useState('');
+  const [tel, setTel] = useState('');
+  const [cel, setCel] = useState('');
+  const [cep, setCep] = useState('');
+  const [city, setCity] = useState('');
   const [uf, setUf] = useState('');
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
+  const [complement, setComplement] = useState('');
+  const [district, setDistrict] = useState('');
+
   const [obs, setObs] = useState('');
 
   const create = async () =>
@@ -118,7 +128,20 @@ export const PFForm = ({ visible }) => {
       marital: marital,
       rg: rg,
       agency: agency,
+      ufrg: ufrg,
+      cnh: cnh,
+      securityCode: securityCode,
+      cei: cei,
+      email: email,
+      tel: tel,
+      cel: cel,
+      cep: cep,
+      city: city,
       uf: uf,
+      address: address,
+      number: number,
+      complement: complement,
+      district: district,
       obs: obs,
     });
 
@@ -183,7 +206,7 @@ export const PFForm = ({ visible }) => {
       </Row>
       <Row>
         <Column>
-          <Text>RG/RNE</Text>
+          <Text>RG/RNE*</Text>
           <TextInput
             type="text"
             width="20"
@@ -207,8 +230,146 @@ export const PFForm = ({ visible }) => {
           <TextInput
             type="text"
             width="5"
+            value={ufrg}
+            onChange={(e) => handleChange(setUfrg, e)}
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column>
+          <Text>CNH</Text>
+          <TextInput
+            type="text"
+            width="20"
+            value={cnh}
+            onChange={(e) => handleChange(setCnh, e)}
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>Segurança</Text>
+          <TextInput
+            type="text"
+            width="20"
+            value={securityCode}
+            onChange={(e) => handleChange(setSecurityCode, e)}
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>CEI</Text>
+          <TextInput
+            type="text"
+            width="20"
+            value={cei}
+            onChange={(e) => handleChange(setCei, e)}
+          />
+        </Column>
+      </Row>
+      <Text>Email</Text>
+      <TextInput
+        type="text"
+        width="25"
+        value={email}
+        onChange={(e) => handleChange(setEmail, e)}
+      />
+      <Row>
+        <Column>
+          <Text>Telefone</Text>
+          <InputMask
+            mask="(99)9999-9999"
+            type="text"
+            value={tel}
+            onChange={(e) => handleChange(setTel, e)}
+            className="inputMask"
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>Celular</Text>
+          <InputMask
+            mask="(99)99999-9999"
+            type="text"
+            value={cel}
+            onChange={(e) => handleChange(setCel, e)}
+            className="inputMask"
+          />
+        </Column>
+      </Row>
+      <VerticalSeparator />
+      <Row>
+        <Column>
+          <Text>CEP*</Text>
+          <InputMask
+            mask="99999-999"
+            type="text"
+            width="20"
+            value={cep}
+            onChange={(e) => handleChange(setCep, e)}
+            className="inputMask"
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>Cidade*</Text>
+          <TextInput
+            type="text"
+            width="20"
+            value={city}
+            onChange={(e) => handleChange(setCity, e)}
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>UF*</Text>
+          <TextInput
+            type="text"
+            width="5"
+            maxLength={2}
             value={uf}
             onChange={(e) => handleChange(setUf, e)}
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column>
+          <Text>Endereço*</Text>
+          <TextInput
+            type="text"
+            width="30"
+            value={address}
+            onChange={(e) => handleChange(setAddress, e)}
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>Número*</Text>
+          <TextInput
+            type="text"
+            width="5"
+            value={number}
+            onChange={(e) => handleChange(setNumber, e)}
+          />
+        </Column>
+      </Row>
+      <Row>
+        <Column>
+          <Text>Complemento</Text>
+          <TextInput
+            type="text"
+            width="25"
+            value={complement}
+            onChange={(e) => handleChange(setComplement, e)}
+          />
+        </Column>
+        <HorizontalSeparator />
+        <Column>
+          <Text>Bairro*</Text>
+          <TextInput
+            type="text"
+            width="25"
+            value={district}
+            onChange={(e) => handleChange(setDistrict, e)}
           />
         </Column>
       </Row>
@@ -220,23 +381,21 @@ export const PFForm = ({ visible }) => {
         value={obs}
         onChange={(e) => handleChange(setObs, e)}
       />
-
       <Row>
         <CreateButton
-          // disabled={
-          //   name.length < 1 ||
-          //   ie.length < 1 ||
-          //   im.length < 1 ||
-          //   email.length < 1 ||
-          //   cep.length < 1 ||
-          //   address.length < 1 ||
-          //   number.length < 1 ||
-          //   district.length < 1 ||
-          //   city.length < 1 ||
-          //   uf.length < 2
-          //     ? true
-          //     : false
-          // }
+          disabled={
+            name.length < 1 ||
+            cpf.length < 11 ||
+            rg.length < 7 ||
+            cep.length < 8 ||
+            address.length < 1 ||
+            number.length < 1 ||
+            district.length < 1 ||
+            city.length < 1 ||
+            uf.length < 2
+              ? true
+              : false
+          }
           onClick={() => {
             create();
             navigation('/');

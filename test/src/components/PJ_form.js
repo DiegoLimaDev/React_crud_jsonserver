@@ -264,7 +264,7 @@ export const PJForm = ({ visible }) => {
         <Column>
           <Text>Telefone</Text>
           <InputMask
-            mask="(99)99999-9999"
+            mask="(99)9999-9999"
             type="text"
             width="20"
             value={tel}
