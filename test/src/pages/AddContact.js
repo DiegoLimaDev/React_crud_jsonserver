@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { CancelButton, CreateButton } from '../components/Button';
+import { PFForm } from '../components/PF_form';
 import { PJForm } from '../components/PJ_form';
 import { Topbar } from '../components/Topbar';
 import { handleChange } from '../services/Handler';
@@ -96,6 +97,7 @@ const AddContact = () => {
           <Text>Pessoa Jurídica</Text>
         </Row>
         <PJForm visible={document} />
+        <PFForm visible={document} />
       </Padding>
     </Container>
   );

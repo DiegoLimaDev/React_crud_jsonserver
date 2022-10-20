@@ -5,8 +5,10 @@ import P from 'prop-types';
 import { theme } from '../utils/theme';
 
 const Button = styled.button`
-  ${({ type }) => css`
-    background-color: ${type === 'save'
+  ${({ type, able }) => css`
+    background-color: ${type === 'save' && able === true
+      ? theme.colors.grey
+      : type === 'save'
       ? theme.colors.green
       : type === 'cancel'
       ? theme.colors.red
@@ -54,9 +56,9 @@ MyAddButton.propTypes = {
   onClick: P.node,
 };
 
-export const CreateButton = ({ onClick }) => {
+export const CreateButton = ({ onClick, disabled }) => {
   return (
-    <Button onClick={onClick} type="save">
+    <Button onClick={onClick} disabled={disabled} able={disabled} type="save">
       <Text>Salvar</Text>
     </Button>
   );
@@ -64,6 +66,7 @@ export const CreateButton = ({ onClick }) => {
 
 CreateButton.propTypes = {
   onClick: P.node,
+  disabled: P.node,
 };
 
 export const CancelButton = ({ onClick }) => {

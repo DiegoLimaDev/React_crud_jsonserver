@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { handleChange } from '../services/Handler';
 import { CancelButton, CreateButton } from './Button';
 import axios from 'axios';
+import InputMask from 'react-input-mask';
 
 const Visible = () => css`
   width: 100%;
@@ -23,6 +24,14 @@ const Container = styled.div`
   ${({ visible }) => css`
     ${visible === 'PJ' ? Visible() : Invisible()}
   `}
+
+  .inputMask {
+    border-radius: 2rem;
+    border: 1px solid;
+    width: 20rem;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+  }
 `;
 
 const Row = styled.div`
@@ -135,7 +144,7 @@ export const PJForm = ({ visible }) => {
     <Container visible={visible}>
       <Row>
         <Column>
-          <Text>Razão Social</Text>
+          <Text>Razão Social*</Text>
           <TextInput
             type="text"
             width="20"
@@ -145,7 +154,7 @@ export const PJForm = ({ visible }) => {
         </Column>
         <HorizontalSeparator />
         <Column>
-          <Text>Nome Fantasia</Text>
+          <Text>Nome Fantasia*</Text>
           <TextInput
             type="text"
             width="20"
@@ -163,12 +172,13 @@ export const PJForm = ({ visible }) => {
       </Row>
       <Row>
         <Column>
-          <Text>CNPJ</Text>
-          <TextInput
+          <Text>CNPJ*</Text>
+          <InputMask
+            mask="99.999.999/9999-99"
             type="text"
-            width="20"
             value={cnpj}
             onChange={(e) => handleChange(setCnpj, e)}
+            className="inputMask"
           />
         </Column>
         <HorizontalSeparator />
@@ -191,7 +201,7 @@ export const PJForm = ({ visible }) => {
       </Row>
       <Row>
         <Column>
-          <Text>Ins. Estadual</Text>
+          <Text>Ins. Estadual*</Text>
           <TextInput
             type="text"
             width="20"
@@ -201,7 +211,7 @@ export const PJForm = ({ visible }) => {
         </Column>
         <HorizontalSeparator />
         <Column>
-          <Text>Ins. Municipal</Text>
+          <Text>Ins. Municipal*</Text>
           <TextInput
             type="text"
             width="20"
@@ -210,7 +220,7 @@ export const PJForm = ({ visible }) => {
           />
         </Column>
       </Row>
-      <Text>Email</Text>
+      <Text>Email*</Text>
       <TextInput
         type="text"
         width="20"
@@ -228,42 +238,50 @@ export const PJForm = ({ visible }) => {
       <Row>
         <Column>
           <Text>CPF</Text>
-          <TextInput
+          <InputMask
+            mask="999.999.999-99"
             type="text"
             width="20"
             value={responsibleCpf}
             onChange={(e) => handleChange(setReponsibleCpf, e)}
+            className="inputMask"
           />
         </Column>
         <HorizontalSeparator />
         <Column>
           <Text>Data de nascimento</Text>
-          <TextInput
+          <InputMask
+            mask="99/99/9999"
             type="text"
             width="20"
             value={birthday}
             onChange={(e) => handleChange(setBirthday, e)}
+            className="inputMask"
           />
         </Column>
       </Row>
       <Row>
         <Column>
           <Text>Telefone</Text>
-          <TextInput
+          <InputMask
+            mask="(99)99999-9999"
             type="text"
             width="20"
             value={tel}
             onChange={(e) => handleChange(setTel, e)}
+            className="inputMask"
           />
         </Column>
         <HorizontalSeparator />
         <Column>
           <Text>Celular</Text>
-          <TextInput
+          <InputMask
+            mask="(99)99999-9999"
             type="text"
             width="20"
             value={cel}
             onChange={(e) => handleChange(setCel, e)}
+            className="inputMask"
           />
         </Column>
         <HorizontalSeparator />
@@ -279,17 +297,19 @@ export const PJForm = ({ visible }) => {
       </Row>
       <Row>
         <Column>
-          <Text>CEP</Text>
-          <TextInput
+          <Text>CEP*</Text>
+          <InputMask
+            mask="99999-999"
             type="text"
             width="20"
             value={cep}
             onChange={(e) => handleChange(setCep, e)}
+            className="inputMask"
           />
         </Column>
         <HorizontalSeparator />
         <Column>
-          <Text>Cidade</Text>
+          <Text>Cidade*</Text>
           <TextInput
             type="text"
             width="20"
@@ -299,7 +319,7 @@ export const PJForm = ({ visible }) => {
         </Column>
         <HorizontalSeparator />
         <Column>
-          <Text>UF</Text>
+          <Text>UF*</Text>
           <TextInput
             type="text"
             width="5"
@@ -311,7 +331,7 @@ export const PJForm = ({ visible }) => {
       </Row>
       <Row>
         <Column>
-          <Text>Endereço</Text>
+          <Text>Endereço*</Text>
           <TextInput
             type="text"
             width="30"
@@ -321,7 +341,7 @@ export const PJForm = ({ visible }) => {
         </Column>
         <HorizontalSeparator />
         <Column>
-          <Text>Número</Text>
+          <Text>Número*</Text>
           <TextInput
             type="text"
             width="5"
@@ -342,7 +362,7 @@ export const PJForm = ({ visible }) => {
         </Column>
         <HorizontalSeparator />
         <Column>
-          <Text>Bairro</Text>
+          <Text>Bairro*</Text>
           <TextInput
             type="text"
             width="25"
@@ -361,6 +381,21 @@ export const PJForm = ({ visible }) => {
       />
       <Row>
         <CreateButton
+          disabled={
+            name.length < 1 ||
+            fantasyName.length < 1 ||
+            ie.length < 1 ||
+            im.length < 1 ||
+            email.length < 1 ||
+            cep.length < 1 ||
+            address.length < 1 ||
+            number.length < 1 ||
+            district.length < 1 ||
+            city.length < 1 ||
+            uf.length < 2
+              ? true
+              : false
+          }
           onClick={() => {
             create();
             setActive(false);

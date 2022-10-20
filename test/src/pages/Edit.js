@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { CancelButton, UpdateButton } from '../components/Button';
-import { PJForm } from '../components/PJ_form';
+import { Topbar } from '../components/Topbar';
 import { handleChange } from '../services/Handler';
 import { theme } from '../utils/theme';
+import InputMask from 'react-input-mask';
 
 const Container = styled.div``;
 
@@ -30,12 +31,28 @@ const ContainerPJ = styled.div`
   ${({ visible }) => css`
     ${visible === 'PJ' ? Visible() : Invisible()};
   `}
+
+  .inputMask {
+    border-radius: 2rem;
+    border: 1px solid;
+    width: 20rem;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+  }
 `;
 
 const ContainerPF = styled.div`
   ${({ visible }) => css`
     ${visible === 'PF' ? Visible() : Invisible()};
   `}
+
+  .inputMask {
+    border-radius: 2rem;
+    border: 1px solid;
+    width: 20rem;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+  }
 `;
 
 const Row = styled.div`
@@ -153,6 +170,7 @@ const Edit = () => {
 
   return (
     <Container>
+      <Topbar>Cadastros/Clientes/Atualizar dados</Topbar>
       <Padding>
         <ContainerPJ visible={visible}>
           <Row>
@@ -188,12 +206,14 @@ const Edit = () => {
           <Row>
             <Column>
               <Text>CNPJ</Text>
-              <TextInput
+              <InputMask
+                mask="99.999.999/9999-99"
                 type="text"
                 width="20"
                 placeholder={state.cnpj}
                 value={cnpj}
                 onChange={(e) => handleChange(setCnpj, e)}
+                className="inputMask"
               />
             </Column>
             <HorizontalSeparator />
@@ -257,46 +277,54 @@ const Edit = () => {
           <Row>
             <Column>
               <Text>CPF</Text>
-              <TextInput
+              <InputMask
+                mask="999.999.999-99"
                 type="text"
                 width="20"
                 placeholder={state.responsibleCpf}
                 value={responsibleCpf}
                 onChange={(e) => handleChange(setReponsibleCpf, e)}
+                className="inputMask"
               />
             </Column>
             <HorizontalSeparator />
             <Column>
               <Text>Data de nascimento</Text>
-              <TextInput
+              <InputMask
+                mask="99/99/9999"
                 type="text"
                 width="20"
                 placeholder={state.birthday}
                 value={birthday}
                 onChange={(e) => handleChange(setBirthday, e)}
+                className="inputMask"
               />
             </Column>
           </Row>
           <Row>
             <Column>
               <Text>Telefone</Text>
-              <TextInput
+              <InputMask
+                mask="(99)99999-9999"
                 type="text"
                 width="20"
                 placeholder={state.tel}
                 value={tel}
                 onChange={(e) => handleChange(setTel, e)}
+                className="inputMask"
               />
             </Column>
             <HorizontalSeparator />
             <Column>
               <Text>Celular</Text>
-              <TextInput
+              <InputMask
+                mask="(99)99999-9999"
                 type="text"
                 width="20"
                 placeholder={state.cel}
                 value={cel}
                 onChange={(e) => handleChange(setCel, e)}
+                className="inputMask"
               />
             </Column>
             <HorizontalSeparator />
@@ -314,12 +342,14 @@ const Edit = () => {
           <Row>
             <Column>
               <Text>CEP</Text>
-              <TextInput
+              <InputMask
+                mask="99999-999"
                 type="text"
                 width="20"
                 placeholder={state.cep}
                 value={cep}
                 onChange={(e) => handleChange(setCep, e)}
+                className="inputMask"
               />
             </Column>
             <HorizontalSeparator />
