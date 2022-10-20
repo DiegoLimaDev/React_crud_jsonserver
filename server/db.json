@@ -2,7 +2,7 @@
   "data": [
     {
       "document": "PJ",
-      "active": true,
+      "active": false,
       "name": "Infusion",
       "fantasyName": "Digital Coding",
       "cnpj": "46.666.666/6665-44",
@@ -23,7 +23,7 @@
       "number": "555",
       "complement": "",
       "district": "Peixinhos",
-      "obs": "Empresa de Tecnologia",
+      "obs": "",
       "id": 1
     },
     {

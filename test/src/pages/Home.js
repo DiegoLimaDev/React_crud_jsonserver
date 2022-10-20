@@ -26,12 +26,14 @@ const Table = styled.div`
   border-color: ${theme.colors.primaryColor};
   border-radius: 3px;
   padding: 0.1rem;
+  justify-content: space-evenly;
 `;
 
 const TableRow = styled.tr``;
 
 const TableHead = styled.th`
   color: ${theme.colors.primaryColor};
+  min-width: 10rem;
   font-size: 1.5rem;
 `;
 

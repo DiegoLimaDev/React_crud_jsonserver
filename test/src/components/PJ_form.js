@@ -87,10 +87,6 @@ const Text = styled.p`
   `}
 `;
 
-const AlignItems = styled.div`
-  align-content: baseline;
-`;
-
 export const PJForm = ({ visible }) => {
   const navigation = useNavigate();
   const document = 'PJ';
