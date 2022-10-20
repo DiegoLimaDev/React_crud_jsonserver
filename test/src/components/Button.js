@@ -77,3 +77,15 @@ export const CancelButton = ({ onClick }) => {
 CancelButton.propTypes = {
   onClick: P.node,
 };
+
+export const UpdateButton = ({ onClick }) => {
+  return (
+    <Button onClick={onClick} type="save">
+      <Text>Salvar</Text>
+    </Button>
+  );
+};
+
+UpdateButton.propTypes = {
+  onClick: P.node,
+};

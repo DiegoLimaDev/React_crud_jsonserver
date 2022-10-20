@@ -3,14 +3,18 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { CancelButton, CreateButton } from '../components/Button';
+import { PJForm } from '../components/PJ_form';
 import { Topbar } from '../components/Topbar';
 import { handleChange } from '../services/Handler';
 import { theme } from '../utils/theme';
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const Padding = styled.div`
   padding: 2rem;
+  width: 80%;
 `;
 
 const Row = styled.div`
@@ -91,46 +95,7 @@ const AddContact = () => {
           />
           <Text>Pessoa Jurídica</Text>
         </Row>
-        <Row>
-          <Column>
-            <Text>Razão Social</Text>
-            <TextInput
-              type="text"
-              width="20"
-              value={name}
-              onChange={(e) => handleChange(setName, e)}
-            />
-          </Column>
-          <HorizontalSeparator />
-          <Column>
-            <Text>Nome Fantasia</Text>
-            <TextInput
-              type="text"
-              width="20"
-              value={fantasyName}
-              onChange={(e) => handleChange(setFantasyName, e)}
-            />
-          </Column>
-          <HorizontalSeparator />
-          <Checkbox
-            type="checkbox"
-            checked={active}
-            onClick={() => setActive(!active)}
-          />
-          <Text>Ativo</Text>
-        </Row>
-        <Row>
-          <CreateButton
-            onClick={() => {
-              create();
-              setDocument('');
-              setActive(false);
-              navigation('/');
-            }}
-          />
-          <HorizontalSeparator />
-          <CancelButton onClick={() => navigation('/')} />
-        </Row>
+        <PJForm visible={document} />
       </Padding>
     </Container>
   );

@@ -99,7 +99,9 @@ const Home = () => {
             <TableRow key={e.id}>
               <TableCell width="5">{e.id}</TableCell>
               <TableCell width="15">{e.name}</TableCell>
-              <TableCell width="20">{e.document}</TableCell>
+              <TableCell width="20">
+                {e.document === 'PJ' ? e.cnpj : e.cpf}
+              </TableCell>
               <TableCell width="20">{e.email}</TableCell>
               <TableCell width="20">{e.tel}</TableCell>
               <TableCell width="20">{e.cel}</TableCell>
