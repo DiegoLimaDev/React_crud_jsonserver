@@ -19,6 +19,7 @@ const Button = styled.button`
     margin: 2rem;
     border: none;
     width: 7rem;
+    height: 2.5rem;
     justify-content: center;
     font-weight: bold;
     cursor: pointer;
