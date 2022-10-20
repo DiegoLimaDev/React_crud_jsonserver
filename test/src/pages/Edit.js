@@ -10,7 +10,9 @@ const Edit = () => {
   const [name, setName] = useState('');
 
   const update = async () =>
-    await axios.put(`http://localhost:3010/data/${state.id}`, { name: name });
+    await axios.put(`http://localhost:3010/data/${state.id}`, {
+      name: name.length >= 1 ? name : state.name,
+    });
 
   return (
     <div>

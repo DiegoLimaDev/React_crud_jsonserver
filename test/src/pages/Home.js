@@ -2,17 +2,23 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Icon } from '@iconify/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { handleChange } from '../services/Handler';
+import { Topbar } from '../components/Topbar';
+import { MyAddButton } from '../components/Button';
+import { theme } from '../utils/theme';
 
 const Container = styled.div`
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
 `;
 
-const Table = styled.table`
-  width: 75%;
+const Table = styled.div`
+  width: 90%;
   display: block;
   margin: 0 auto;
+  border: 1px solid;
+  border-color: ${theme.colors.primaryColor};
+  padding: 0.1rem;
 `;
 
 const TableRow = styled.tr`
@@ -20,20 +26,29 @@ const TableRow = styled.tr`
   height: 2rem; */
 `;
 
+const TableHead = styled.th`
+  color: ${theme.colors.primaryColor};
+  font-size: 1.5rem;
+`;
+
 const TableCell = styled.td`
   ${({ width }) => css`
     width: ${width}%;
     height: 3rem;
     text-align: center;
-    border: 1px solid;
+    border-top: 0.5px solid;
+    padding: 0.1rem;
+    color: ${theme.colors.primaryColor};
+    font-size: 1.2rem;
   `}
 `;
 
-const Icons = styled.Icon`
+const Icons = styled.div`
   cursor: pointer;
 `;
 
 const Home = () => {
+  const navigation = useNavigate();
   const [name, setName] = useState('');
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -60,15 +75,25 @@ const Home = () => {
 
   return (
     <Container>
+      <Topbar>Cadastro/Clientes</Topbar>
+      <MyAddButton
+        // onClick={() => {
+        //   create();
+        //   setName('');
+        // }}
+        onClick={() => navigation('/add')}
+      >
+        <p>adicionar</p>
+      </MyAddButton>
       <Table>
-        <TableRow>
-          <th width="5">ID</th>
-          <th width="15">NAME</th>
-          <th width="20">CPF/CNPJ</th>
-          <th width="20">EMAIL</th>
-          <th width="20">TEL</th>
-          <th width="20">CEL</th>
-        </TableRow>
+        {/* <TableRow> */}
+        <TableHead widTableHead="5">ID</TableHead>
+        <TableHead widTableHead="15">NAME</TableHead>
+        <TableHead widTableHead="20">CPF/CNPJ</TableHead>
+        <TableHead widTableHead="20">EMAIL</TableHead>
+        <TableHead widTableHead="20">TEL</TableHead>
+        <TableHead widTableHead="20">CEL</TableHead>
+        {/* </TableRow> */}
         {data.map((e) => {
           return (
             <TableRow key={e.id}>
@@ -80,14 +105,18 @@ const Home = () => {
               <TableCell width="20">{e.cel}</TableCell>
               <TableCell>
                 <Link to={`/edit/${e.id}`} state={getById(Number(e.id))}>
-                  <Icons icon="clarity:note-edit-line" />
+                  <Icon icon="clarity:note-edit-line" width="25" height="25" />
                 </Link>
               </TableCell>
               <TableCell>
-                <Icons
-                  icon="fluent:delete-28-regular"
-                  onClick={() => deleteData(e.id)}
-                />
+                <Icons>
+                  <Icon
+                    icon="fluent:delete-28-regular"
+                    width="25"
+                    height="25"
+                    onClick={() => deleteData(e.id)}
+                  />
+                </Icons>
               </TableCell>
             </TableRow>
           );
@@ -98,14 +127,6 @@ const Home = () => {
         onChange={(e) => handleChange(setName, e)}
         value={name}
       />
-      <button
-        onClick={() => {
-          create();
-          setName('');
-        }}
-      >
-        <p>adicionar</p>
-      </button>
     </Container>
   );
 };
