@@ -98,6 +98,7 @@ const Home = () => {
         <TextInput
           type="text"
           width="20"
+          placeholder="Pesquisar"
           value={filter}
           onChange={(e) => handleChange(setFilter, e)}
         />
